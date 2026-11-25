@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Contact Demo
+        </div>
+
+        <!-- <div class="nav-links">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_logout') }}">Logout</a>
+        </div> -->
+
+    </nav>
+
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1> Welcome , Admin</h1>
+
+                <!-- <p>
+                    Welcome, {{ session["username"] }}
+                </p> -->
+            </div>
+
+            <a href="{{ url_for('admin_logout') }}" class="btn">
+                Logout
+            </a>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <h2>Messages</h2>
+
+            {% if contacts %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <!-- <th>Date</th> -->
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for contact in contacts %}
+
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td>{{ contact.message }}</td>
+                        <!-- <td>{{ contact.created_at }}</td> -->
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <p class="no-data">
+                No contact messages found.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
